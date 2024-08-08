@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/crissan-portfolio/static/css/main.35e542ae.css",
+    "main.js": "/crissan-portfolio/static/js/main.dca0ceaf.js",
+    "static/js/453.1407b060.chunk.js": "/crissan-portfolio/static/js/453.1407b060.chunk.js",
+    "static/media/profile.jpg": "/crissan-portfolio/static/media/profile.fcafa5a0782220e2a970.jpg",
+    "static/media/work2.png": "/crissan-portfolio/static/media/work2.dbedc05f5645ed693cce.png",
+    "static/media/work4.png": "/crissan-portfolio/static/media/work4.44526df13c5137e75a68.png",
+    "static/media/work1.png": "/crissan-portfolio/static/media/work1.63ae6a7d5897f3862fce.png",
+    "static/media/work3.png": "/crissan-portfolio/static/media/work3.58092cce756a2d06ddb5.png",
+    "static/media/about.jpg": "/crissan-portfolio/static/media/about.0ecbdfb1548ec0c5d0da.jpg",
+    "static/media/Crissan-CV.pdf": "/crissan-portfolio/static/media/Crissan-CV.f279103b6b918588dc7d.pdf",
+    "static/media/logo.svg": "/crissan-portfolio/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/crissan-portfolio/index.html",
+    "main.35e542ae.css.map": "/crissan-portfolio/static/css/main.35e542ae.css.map",
+    "main.dca0ceaf.js.map": "/crissan-portfolio/static/js/main.dca0ceaf.js.map",
+    "453.1407b060.chunk.js.map": "/crissan-portfolio/static/js/453.1407b060.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.35e542ae.css",
+    "static/js/main.dca0ceaf.js"
+  ]
+}
