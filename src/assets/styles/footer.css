@@ -1,10 +1,10 @@
 .footer {
-    background-color: var(--container-color);
+    background-color: var(--black-lightest);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .footer__container {
-    padding: 2rem 0 6rem;
+    padding: 4rem 0 4rem;
 }
 
 .footer__title,
@@ -19,6 +19,7 @@
 
 .footer__link {
     color: var(--title-color-dark);
+    font-family: var(--body-font-2);
 }
 
 .footer__list {
@@ -53,6 +54,7 @@
     color: var(--title-color);
     text-align: center;
     font-size: var(--smaller-font-size);
+    font-family: var(--body-font-2);
 }
 
 /*=============== BREAKPOINTS ===============*/

@@ -1,0 +1,385 @@
+/* ============ BASE STYLES ============ */
+.contact__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-bottom: 3rem;
+}
+
+.contact__description {
+    width: 100%;
+}
+
+.section__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: var(--mb-2, 1rem);
+    line-height: 1.2;
+}
+
+.section__subtitle {
+    font-size: clamp(0.938rem, 2vw, 1.125rem);
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.section__link {
+    color: var(--light-blue, #0066cc);
+    text-decoration: underline;
+    font-weight: var(--font-medium, 500);
+    transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+.section__link:hover {
+    color: var(--light-blue-hover, #0052a3);
+}
+
+.section__link:focus {
+    outline: 2px solid var(--light-blue);
+    outline-offset: 2px;
+}
+
+/* Form Styles */
+.contact__content {
+    width: 100%;
+}
+
+.contact__form {
+    width: 100%;
+    max-width: 100%;
+}
+
+.contact__form-div {
+    position: relative;
+    margin-bottom: var(--mb-2, 2rem);
+    height: 4rem;
+}
+
+.contact__form-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: none;
+    color: var(--text-color);
+    outline: none;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    z-index: 1;
+    transition: border-color 0.3s ease;
+}
+
+.contact__form-input.error {
+    border-color: #ff4444;
+}
+
+.contact__form-tag {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.25rem;
+    font-size: var(--smaller-font-size, 0.813rem);
+    padding: 0.25rem 0.5rem;
+    z-index: 10;
+    font-family: var(--body-font-2, sans-serif);
+    transition: color 0.3s ease;
+}
+
+.contact__form-area {
+    height: 11rem;
+}
+
+.contact__form-area textarea {
+    resize: vertical;
+    min-height: 11rem;
+    padding-top: 1rem;
+}
+
+.contact__form .button {
+    margin-top: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact__form .button:hover {
+    transform: translateY(-2px);
+}
+
+.contact__form .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form__message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.938rem;
+    text-align: center;
+    animation: slideDown 0.3s ease;
+}
+
+.form__message--success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form__message--error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============ MOBILE FIRST (Default < 576px) ============ */
+@media screen and (max-width: 575px) {
+    .contact__container {
+        padding: 1rem;
+        gap: 2rem;
+    }
+
+    .section__title {
+        font-size: 1.75rem;
+        text-align: center;
+    }
+
+    .section__subtitle {
+        font-size: 0.938rem;
+        text-align: center;
+        margin-bottom: 0 !important;
+    }
+
+    .section__social {
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .section__social-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.375rem;
+    }
+
+    .contact__form-div {
+        margin-bottom: 1.75rem;
+    }
+
+    .contact__form-input {
+        padding: 1.25rem;
+        font-size: 0.938rem;
+    }
+
+    .contact__form .button {
+        padding: 0.875rem;
+        font-size: 0.938rem;
+    }
+}
+
+/* ============ SMALL MOBILE (< 350px) ============ */
+@media screen and (max-width: 350px) {
+    .contact__container {
+        padding: 0.75rem;
+    }
+
+    .section__title {
+        font-size: 1.5rem;
+    }
+
+    .section__subtitle {
+        font-size: 0.875rem;
+        margin-bottom: 0 !important;
+    }
+
+    .section__social-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.25rem;
+    }
+
+    .contact__form-input {
+        padding: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .contact__form-tag {
+        font-size: 0.75rem;
+    }
+
+    .contact__form-area {
+        height: 10rem;
+    }
+}
+
+/* ============ TABLET PORTRAIT (576px - 767px) ============ */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .contact__container {
+        padding: 1.5rem;
+    }
+
+    .section__title {
+        text-align: center;
+    }
+
+    .section__subtitle {
+        text-align: center;
+        margin-bottom: 0 !important;
+    }
+
+    .section__social {
+        justify-content: center;
+    }
+
+    .contact__form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+/* ============ TABLET LANDSCAPE (768px - 991px) ============ */
+@media screen and (min-width: 768px) {
+    .contact__container {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 3rem;
+        align-items: flex-start;
+    }
+
+    .contact__description {
+        width: 45%;
+        flex-shrink: 0;
+    }
+
+    .contact__content {
+        width: 50%;
+    }
+
+    .contact__form {
+        max-width: 100%;
+    }
+
+    .section__title {
+        text-align: left;
+        font-size: 2rem;
+    }
+
+    .section__subtitle {
+        text-align: left;
+        font-size: 1rem;
+        margin-bottom: 0 !important;
+    }
+
+    .section__social {
+        justify-content: flex-start;
+    }
+}
+
+/* ============ SMALL DESKTOP (992px - 1199px) ============ */
+@media screen and (min-width: 992px) {
+    .contact__container {
+        gap: 4rem;
+    }
+
+    .contact__description {
+        width: 42%;
+    }
+
+    .contact__content {
+        width: 55%;
+    }
+
+    .section__title {
+        font-size: 2.25rem;
+    }
+
+    .section__subtitle {
+        font-size: 1.063rem;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ============ LARGE DESKTOP (1200px and up) ============ */
+@media screen and (min-width: 1200px) {
+    .contact__container {
+        gap: 5rem;
+    }
+
+    .contact__description {
+        width: 40%;
+    }
+
+    .contact__content {
+        width: 55%;
+    }
+
+    .contact__form {
+        max-width: 35rem;
+    }
+
+    .section__title {
+        font-size: 2.5rem;
+    }
+
+    .section__subtitle {
+        font-size: 1.125rem;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ============ EXTRA LARGE DESKTOP (1400px and up) ============ */
+@media screen and (min-width: 1400px) {
+    .contact__container {
+        gap: 6rem;
+    }
+
+    .contact__form {
+        max-width: 38rem;
+    }
+}
+
+/* ============ ACCESSIBILITY & INTERACTIONS ============ */
+@media (prefers-reduced-motion: reduce) {
+    .section__social-icon,
+    .section__link,
+    .contact__form-input,
+    .contact__form .button,
+    .form__message {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+.contact__form-input:focus-visible {
+    outline: 2px solid var(--light-blue);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .section__social {
+        display: none;
+    }
+
+    .contact__form {
+        display: none;
+    }
+
+    .section__link {
+        color: #000;
+        text-decoration: underline;
+    }
+}

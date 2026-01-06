@@ -1,0 +1,279 @@
+/* =============== HEADER =============== */
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    background-color: var(--container-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1rem;
+    max-width: 1285px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.nav__logo {
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    font-size: var(--h2-font-size);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav__logo:hover {
+    color: var(--title-color-dark);
+}
+
+.nav__list {
+    display: flex;
+    column-gap: 2rem;
+    align-items: start;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__item {
+    list-style: none;
+}
+
+.nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    font-family: var(--body-font-2);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 0.5rem;
+}
+
+.nav__link span {
+    white-space: nowrap;
+}
+
+.nav__icon {
+    display: none;
+    font-size: 1.25rem;
+}
+
+.nav__close, 
+.nav__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--title-color);
+    transition: color 0.3s ease;
+}
+
+/* Active link */
+.active-link,
+.nav__link:hover {
+    color: var(--title-color-dark);
+    transform: translateY(-2px);
+}
+
+.scroll-header {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--black-lighter);
+}
+
+/*=============== BREAKPOINTS ===============*/
+
+/* For large tablets and small desktops */
+@media screen and (max-width: 968px) {
+    .nav__list {
+        column-gap: 1.5rem;
+    }
+
+    .nav__link {
+        font-size: var(--smaller-font-size);
+    }
+
+    .nav__logo {
+        font-size: var(--h3-font-size);
+    }
+}
+
+/* For tablets */
+@media screen and (max-width: 768px) {
+    .header {
+        top: 0;
+        bottom: auto;
+        background-color: var(--container-color);
+    }
+
+    .nav {
+        height: var(--header-height);
+        padding: 0 1rem;
+    }
+
+    .nav__logo {
+        font-size: 1rem;
+        flex: 1;
+    }
+
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 230px;
+        height: 100vh;
+        background-color: var(--black-lighter);
+        padding: 4rem 2rem 2rem;
+        box-shadow: -2px 0 12px rgba(0, 0, 0, 0.15);
+        transition: right 0.4s ease;
+        z-index: calc(var(--z-fixed) + 1);
+        overflow-y: auto;
+    }
+
+    /* Overlay backdrop */
+    .nav__menu::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        z-index: -1;
+    }
+
+    /* Show Menu */
+    .show-menu {
+        right: 0;
+    }
+
+    .show-menu::before {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav__list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav__link {
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: flex-start;
+        font-size: var(--normal-font-size);
+    }
+
+    .nav__icon {
+        display: block;
+        font-size: 1.5rem;
+    }
+
+    .nav__close {
+        display: block;
+        position: absolute;
+        right: 1.5rem;
+        top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .nav__close:hover,
+    .nav__toggle:hover {
+        color: var(--title-color-dark);
+    }
+    
+    .nav__toggle {
+        display: block;
+        font-size: 1.25rem;
+    }
+}
+
+/* For mobile devices */
+@media screen and (max-width: 480px) {
+    .nav {
+        padding: 0 0.75rem;
+    }
+
+    .nav__logo {
+        font-size: 0.9rem;
+    }
+
+    .nav__menu {
+        width: 180px;
+        padding: 3.5rem 1.5rem 2rem;
+    }
+
+    .nav__link {
+        font-size: var(--small-font-size);
+        padding: 0.5rem;
+    }
+
+    .nav__icon {
+        font-size: 1.25rem;
+    }
+}
+
+/* For very small devices */
+@media screen and (max-width: 350px) {
+    .nav {
+        padding: 0 0.5rem;
+    }
+
+    .nav__logo {
+        font-size: 0.85rem;
+    }
+
+    .nav__menu {
+        width: 180px;
+        padding: 3rem 1.25rem 2rem;
+    }
+
+    .nav__link {
+        font-size: var(--smaller-font-size);
+    }
+
+    .nav__icon {
+        font-size: 1.1rem;
+    }
+
+    .nav__close {
+        right: 1rem;
+        top: 0.75rem;
+        font-size: 1.25rem;
+    }
+
+    .nav__toggle {
+        font-size: 1.1rem;
+    }
+}
+
+/* Focus styles for accessibility */
+.nav__link:focus,
+.nav__toggle:focus,
+.nav__close:focus {
+    outline: 2px solid var(--title-color-dark);
+    outline-offset: 2px;
+}
+
+/* Smooth transitions */
+.nav__menu,
+.nav__link,
+.nav__logo,
+.nav__toggle,
+.nav__close {
+    transition: all 0.3s ease;
+}

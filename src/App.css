@@ -1,28 +1,29 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 3rem;
 
   /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
-  /* --hue: 0; */
-  /* --sat: 0%; */
-  /* WHITE */
-  --title-color: #FFFFFF;
-  /* DARK GRAY */
-  --title-color-dark: #959794;
-  --text-color: #959794; 
-  /* GRAY */
-  --body-color: #19171A;
-  /* DARK */
-  --container-color: #292929;
+  --white: #FFFFFF;
+  --black: #242333;
+  --black-light: #2f2e42;    /* Slightly lighter */
+  --black-lighter: #3a3951;  /* More lighter */
+  --black-soft: #454360;     /* Noticeably lighter */
+  --black-lightest: #50506f; /* Even lighter */
+  --light-blue: #01B0D3;
+  --gray: #898989;
+  
 
   /*========== Font and typography ==========*/
-  --body-font: "Poppins", sans-serif;
+  --body-font: "Bebas Neue", sans-serif;
+  --body-font-2: 'Poppins', sans-serif;
 
   /*.5rem = 8px | 1rem = 16px ...*/
+  --bigger-font-size: 5rem;
   --big-font-size: 3.5rem;
   --h1-font-size: 2.25rem;
   --h2-font-size: 1.5rem;
@@ -87,14 +88,15 @@ textarea {
 }
 
 body {
-  background-color: var(--body-color);
-  color: var(--text-color);
+  /* background-color: var(--body-color); */
+  background-color: var(--black);
+  color: var(--white);
 }
 
 h1,
 h2,
 h3 {
-  color: var(--title-color);
+  color: var(--white);
   font-weight: var(--font-semi-bold);
 }
 
@@ -119,28 +121,50 @@ img {
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .section {
-  padding: 6rem 0 2rem;
+  padding: 6rem 2rem 2rem;
 }
 
 .section__title {
-  font-size: var(--h1-font-size);
-  color: var(--title-color);
+  font-size: var(--big-font-size);
+  color: var(--white);
+  margin-bottom: var(--mb-0-5);
 }
 
 .section__subtitle {
-  display: block;
-  font-size: var(--small-font-size);
-  margin-bottom: 4rem;
+  font-size: var(--normal-font-size);
+  font-family: var(--body-font-2);
+  margin-bottom: var(--mb-0-25);
+}
+
+.section__link {
+  color: var(--white);
+  text-decoration: underline;
 }
 
 .section__title,
 .section__subtitle {
-  text-align: center;
+  text-align: left;
 }
 
+.section__social {
+    gap: 1rem;
+    display: flex;
+    margin-top: var(--mb-2);
+}
+
+.section__social-icon {
+    font-size: var(--h2-font-size);
+    color: var(--light-blue);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.section__social-icon:hover{
+    color: var(--title-color-dark);
+}
 /*=============== LAYOUT ===============*/
 .container {
-  max-width: 968px;
+  max-width: 75rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -153,15 +177,17 @@ img {
 /*=============== BUTTONS ===============*/
 .button {
   display: inline-block;
-  background-color: var(--title-color);
-  color: var(--container-color);
-  padding: 1.25rem 2rem;
-  border-radius: 1rem;
+  background-color: var(--light-blue);
+  color: var(--black);
+  padding: 0.875rem 2rem;
+  border-radius: 2rem;
   font-weight: var(--font-medium);
+  font-family: var(--body-font-2);
+  transition: 0.3s;
 }
 
 .button:hover {
-  background-color: var(--title-color-dark);
+  background-color: var(--white);
 }
 
 .button__icon {
@@ -198,7 +224,7 @@ img {
   }
 
   .section {
-    padding: 2rem 0 4rem;
+    padding: 5rem 0 4rem;
   }
 
   .section__subtitle {
