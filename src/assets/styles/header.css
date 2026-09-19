@@ -1,5 +1,5 @@
 /* =============== HEADER =============== */
-.header {
+/* .header {
     width: 100%;
     position: fixed;
     top: 0;
@@ -7,7 +7,22 @@
     z-index: var(--z-fixed);
     background-color: var(--container-color);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+} */
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--z-fixed);
+    background-color: transparent;
+    border-radius: 0;
+    transition: top 0.4s ease, width 0.4s ease, border-radius 0.4s ease,
+                background-color 0.4s ease, box-shadow 0.4s ease,
+                backdrop-filter 0.4s ease;
 }
+
 
 .nav {
     height: calc(var(--header-height) + 2rem);
@@ -87,11 +102,25 @@
     transform: translateY(-2px);
 }
 
-.scroll-header {
+/* .scroll-header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     background-color: var(--black-lighter);
+} */
+
+.scroll-header {
+    top: 1rem;
+    width: min(90%, 1100px);
+    border-radius: 50px;
+    background-color: var(--black-lighter);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
+.scroll-header .nav {
+    height: calc(var(--header-height) + 1rem);
+    padding: 0 1.5rem;
+}
 /*=============== BREAKPOINTS ===============*/
 
 /* For large tablets and small desktops */

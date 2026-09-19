@@ -7,16 +7,30 @@
 :root {
   --header-height: 3rem;
 
-  /*========== Colors ==========*/
-  --white: #FFFFFF;
-  --black: #242333;
-  --black-light: #2f2e42;    /* Slightly lighter */
-  --black-lighter: #3a3951;  /* More lighter */
-  --black-soft: #454360;     /* Noticeably lighter */
-  --black-lightest: #50506f; /* Even lighter */
-  --light-blue: #01B0D3;
-  --gray: #898989;
-  
+  /*========== "Elegant Minimalism" palette (source of truth) ==========*/
+  --palette-white: #FFFFFF;
+  --palette-porcelain: #F0F0F0;
+  --palette-silver: #B0B0B0;
+  --palette-slate: #707070;
+  --palette-charcoal: #333333;
+
+  /*========== Surfaces — 5-step depth ramp derived from charcoal → slate ==========*/
+  --black: var(--palette-charcoal);       /* #333333 — page background */
+  --black-light: #3C3C3C;                 /* ~15% toward slate — first elevation (cards, panels) */
+  --black-lighter: #454545;               /* ~30% toward slate — second elevation (hover surfaces) */
+  --black-soft: #525252;                  /* ~50% toward slate — borders, dividers */
+  --black-lightest: var(--palette-slate); /* #707070 — highest elevation / muted icons */
+
+  /*========== Semantic text & surface roles used across components ========== */
+  --white: var(--palette-white);          /* #FFFFFF */
+  --title-color: var(--palette-white);    /* headings — highest contrast */
+  --text-color: var(--palette-silver);    /* body copy, meta text, descriptions */
+  --title-color-dark: var(--palette-charcoal); /* text placed on light/accent backgrounds */
+  --container-color: var(--black-light);  /* card & panel backgrounds */
+  --gray: var(--palette-slate);           /* muted labels, placeholders */
+
+  /*========== Accent — mapped to porcelain to stay within the palette ==========*/
+  --light-blue: var(--palette-porcelain); /* #F0F0F0 — buttons, borders, glows, hover states */
 
   /*========== Font and typography ==========*/
   --body-font: "Bebas Neue", sans-serif;
@@ -88,15 +102,14 @@ textarea {
 }
 
 body {
-  /* background-color: var(--body-color); */
   background-color: var(--black);
-  color: var(--white);
+  color: var(--text-color);
 }
 
 h1,
 h2,
 h3 {
-  color: var(--white);
+  color: var(--title-color);
   font-weight: var(--font-semi-bold);
 }
 
@@ -106,17 +119,32 @@ ul {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 button {
   cursor: pointer;
   border: none;
   outline: none;
+  background: none;
+  color: inherit;
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Accessible focus state, palette-consistent */
+:focus-visible {
+  outline: 2px solid var(--light-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: var(--light-blue);
+  color: var(--title-color-dark);
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -126,18 +154,19 @@ img {
 
 .section__title {
   font-size: var(--big-font-size);
-  color: var(--white);
+  color: var(--title-color);
   margin-bottom: var(--mb-0-5);
 }
 
 .section__subtitle {
   font-size: var(--normal-font-size);
   font-family: var(--body-font-2);
+  color: var(--text-color);
   margin-bottom: var(--mb-0-25);
 }
 
 .section__link {
-  color: var(--white);
+  color: var(--title-color);
   text-decoration: underline;
 }
 
@@ -159,9 +188,10 @@ img {
     transition: 0.3s;
 }
 
-.section__social-icon:hover{
+.section__social-icon:hover {
     color: var(--title-color-dark);
 }
+
 /*=============== LAYOUT ===============*/
 .container {
   max-width: 75rem;
@@ -178,7 +208,7 @@ img {
 .button {
   display: inline-block;
   background-color: var(--light-blue);
-  color: var(--black);
+  color: var(--title-color-dark);
   padding: 0.875rem 2rem;
   border-radius: 2rem;
   font-weight: var(--font-medium);
