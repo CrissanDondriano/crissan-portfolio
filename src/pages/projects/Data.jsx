@@ -1,8 +1,8 @@
 import Work1 from '../../assets/images/work1.png' // eCABS
 import Work2 from '../../assets/images/work2.png' // Linang
-import Work3 from '../../assets/images/work2.png' // BGPMS — add screenshot
-import Work4 from '../../assets/images/work2.png' // TaskFlow — add screenshot
-import Work5 from '../../assets/images/work2.png' // Idle Realm — add screenshot
+import Work3 from '../../assets/images/work3.png' // BGPMS 
+import Work4 from '../../assets/images/work4.png' // TaskFlow 
+import Work5 from '../../assets/images/work5.png' // Idle Realm
 
 export const projectsNav = [
   { name: 'All' },
@@ -42,13 +42,13 @@ export const projectsData = [
         role: 'Full Stack Developer',
         category: 'web',
         demo: 'https://bgpms.onrender.com/',
-        link: '' // add your repo link here
+        link: ''
     },
     {
         id: 4,
         image: Work4,
-        title: 'TaskFlow',
-        description: 'Replace this with a real description of what TaskFlow does — its purpose, stack, and the problem it solves for users.',
+        title: 'TaskFlow AI',
+        description: 'TaskFlow AI is a modern task and productivity management application designed to help users organize, track, and manage their work efficiently. It combines a Laravel REST API backend with a React + TypeScript frontend to provide a responsive and interactive task management experience.',
         year: '2026',
         role: 'Full Stack Developer',
         category: 'web',
