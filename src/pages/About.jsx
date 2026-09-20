@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Social from './Social';
+import Resume from './../assets/pdf/Crissan Resume.pdf';
 
-/* ============ CONFIG (edit these) ============ */
 const CONFIG = {
     role: 'Full-Stack Web Developer | Philippines',
-    // Put your PDF in the /public folder with this exact name
-    resumeUrl: '/Crissan-Dondriano-Resume.pdf',
+    resumeUrl: Resume,
     resumeFileName: 'Crissan-Dondriano-Resume.pdf',
     experienceYears: 1.5,
 };
@@ -17,7 +15,6 @@ const DESCRIPTION =
     'I care about readable code, responsive and accessible interfaces, and shipping work that solves a real problem. ' +
     'I also use workflow automation tools like Airtable, Softr and Make to remove manual work.';
 
-// Taken from your Capabilities section. The note is just a short descriptor of the language
 const LANGUAGES = [
     { name: 'HTML5', note: 'Markup' },
     { name: 'CSS3', note: 'Styling' },

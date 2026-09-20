@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import Resume from './../assets/pdf/Crissan Resume.pdf';
 import emailjs from "@emailjs/browser";
 
 const CONFIG = {
     email: "dondrianocrissan20@gmail.com",
     location: "Philippines",
     timezone: "Asia/Manila",
-    resumeUrl: "/Crissan-Dondriano-Resume.pdf",
+    resumeUrl: Resume,
     resumeFileName: "Crissan-Dondriano-Resume.pdf",
     availability: "Available for work",
     emailjs: {

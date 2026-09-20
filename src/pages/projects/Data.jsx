@@ -38,7 +38,7 @@ export const projectsData = [
         image: Work3,
         title: 'BGPMS: Barangay Governance Performance Management System',
         description: 'A PHP/MySQL web application for tracking and scoring barangay (local government unit) compliance and performance — automated scoring across Administrative Reports, Submission Reports, SGLGB, and LTIA criteria, with a color-coded compliance tracker and CSV export.',
-        year: '2024-2026',
+        year: '2026',
         role: 'Full Stack Developer',
         category: 'web',
         demo: 'https://bgpms.onrender.com/',
