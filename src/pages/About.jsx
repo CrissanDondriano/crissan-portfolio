@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Resume from './../assets/pdf/Crissan Resume.pdf';
+import Social from './Social';
 
 const CONFIG = {
     role: 'Full-Stack Web Developer | Philippines',
