@@ -1,17 +1,9 @@
-/* ==========================================================
-   EXPERIENCE SECTION
-   Uses the palette variables defined in index.css
-   Background and interactions match the Contact and Projects sections
-   ========================================================== */
-
-/* `clip` (unlike `hidden`) doesn't create a scroll container, so the sticky intro column keeps working */
 .experience.section {
     position: relative;
     overflow: hidden;
     overflow: clip;
 }
 
-/*=============== BACKGROUND ===============*/
 .experience__bg {
     position: absolute;
     inset: 0;
@@ -38,7 +30,6 @@
     right: -10%;
 }
 
-/* Very faint glow that follows the cursor across the section */
 .experience__cursor-glow {
     position: absolute;
     inset: 0;
@@ -55,7 +46,6 @@
     opacity: 1;
 }
 
-/*=============== LAYOUT ===============*/
 .experience__container {
     position: relative;
     z-index: 1;
@@ -66,20 +56,6 @@
     padding-bottom: 3rem;
 }
 
-/*=============== SCROLL REVEAL (intro + closing strip) ===============*/
-.experience__reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    transition-delay: var(--delay, 0ms);
-}
-
-.experience--visible .experience__reveal {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/*=============== INTRO COLUMN ===============*/
 .experience__intro {
     display: flex;
     flex-direction: column;
@@ -137,13 +113,11 @@
     background: var(--container-color);
     border: 1px solid var(--black-soft);
     border-radius: 1rem;
-    transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
 .experience__stat:hover {
     border-color: var(--light-blue);
-    background: var(--black-lighter);
-    transform: translateY(-3px);
 }
 
 .experience__stat-value {
@@ -162,50 +136,7 @@
     color: var(--text-color);
 }
 
-/* Technology filter */
-.experience__label {
-    margin-bottom: 0.85rem;
-    font-family: var(--body-font-2);
-    font-size: var(--smaller-font-size);
-    font-weight: var(--font-medium);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gray);
-}
-
-.experience__filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
-
-.experience__filter-btn {
-    padding: 0.4rem 0.9rem;
-    border: 1px solid var(--black-soft);
-    border-radius: 2rem;
-    font-family: var(--body-font-2);
-    font-size: var(--smaller-font-size);
-    color: var(--text-color);
-    transition: all 0.25s ease;
-}
-
-.experience__filter-btn:hover {
-    border-color: var(--light-blue);
-    color: var(--title-color);
-}
-
-.experience__filter-btn--active {
-    background: var(--light-blue);
-    border-color: var(--light-blue);
-    color: var(--title-color-dark);
-    font-weight: var(--font-medium);
-}
-
-.experience__filter-btn--active:hover {
-    color: var(--title-color-dark);
-}
-
-/* Expand all + result text */
+/* Expand all */
 .experience__controls {
     display: flex;
     flex-wrap: wrap;
@@ -236,13 +167,6 @@
     background: var(--black-lighter);
 }
 
-.experience__result {
-    font-family: var(--body-font-2);
-    font-size: var(--smaller-font-size);
-    color: var(--gray);
-}
-
-/*=============== TIMELINE ===============*/
 .experience__timeline {
     --dot: 12px;
     --pad: 2rem;
@@ -276,7 +200,6 @@
     list-style: none;
 }
 
-/* Each item is dimmed until the timeline reaches it */
 .experience__item {
     position: relative;
     opacity: 0.45;
@@ -289,13 +212,6 @@
     transform: translateX(0);
 }
 
-/* Roles that don't use the selected technology */
-.experience__item--muted,
-.experience__item--active.experience__item--muted {
-    opacity: 0.25;
-}
-
-/* The dot sits on the list item (not inside the card) so it is never clipped */
 .experience__dot {
     position: absolute;
     left: calc(var(--pad) * -1);
@@ -340,7 +256,6 @@
     transform: translateY(-3px);
 }
 
-/* Cursor spotlight (same recipe as Contact and Projects) */
 .experience__card::before {
     content: "";
     position: absolute;
@@ -483,7 +398,6 @@
     transform: rotate(180deg);
 }
 
-/* Grid-based height animation; visibility keeps collapsed text out of the accessibility tree */
 .experience__details-wrap {
     display: grid;
     grid-template-rows: 0fr;
@@ -529,7 +443,7 @@
     color: var(--light-blue);
 }
 
-/*=============== SKILL CHIPS (click to filter) ===============*/
+/*=============== SKILL CHIPS ===============*/
 .experience__skills {
     display: flex;
     flex-wrap: wrap;
@@ -546,86 +460,6 @@
     font-size: 0.813rem;
     font-weight: var(--font-medium);
     color: var(--text-color);
-    transition: color 0.25s ease, border-color 0.25s ease,
-        background-color 0.25s ease, transform 0.25s ease;
-}
-
-.experience__skill:hover {
-    color: var(--title-color);
-    border-color: var(--light-blue);
-    background: var(--black-lighter);
-    transform: translateY(-2px);
-}
-
-.experience__skill--match,
-.experience__skill--match:hover {
-    background: var(--light-blue);
-    border-color: var(--light-blue);
-    color: var(--title-color-dark);
-}
-
-/*=============== CLOSING STRIP ===============*/
-.experience__cta {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 1.75rem 2rem;
-    background: var(--container-color);
-    border: 1px solid var(--black-soft);
-    border-radius: 1.25rem;
-}
-
-.experience__cta-title {
-    margin-bottom: 0.25rem;
-    font-family: var(--body-font-2);
-    font-size: var(--h2-font-size);
-    font-weight: var(--font-semi-bold);
-    color: var(--title-color);
-}
-
-.experience__cta-sub {
-    max-width: 30rem;
-    font-family: var(--body-font-2);
-    font-size: var(--small-font-size);
-    line-height: 1.7;
-    color: var(--text-color);
-}
-
-.experience__cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.experience__cta-actions .button {
-    gap: 0.5rem;
-}
-
-.experience__cta-actions .button:hover {
-    transform: translateY(-2px);
-}
-
-.experience__ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.5rem;
-    border: 1px solid var(--black-soft);
-    border-radius: 2rem;
-    font-family: var(--body-font-2);
-    font-size: var(--small-font-size);
-    font-weight: var(--font-medium);
-    color: var(--title-color);
-    transition: all 0.3s ease;
-}
-
-.experience__ghost:hover {
-    border-color: var(--light-blue);
-    background: var(--black-lighter);
-    transform: translateY(-2px);
 }
 
 /*=============== RESPONSIVE ===============*/
@@ -634,13 +468,17 @@
         grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
         gap: 4rem;
     }
+
+    .experience__list {
+        gap: 3.5rem;
+    }
 }
 
-/* Only pin the intro when the screen is tall enough to show all of it */
-@media screen and (min-width: 992px) and (min-height: 720px) {
+
+@media screen and (min-width: 992px) and (min-height: 600px) {
     .experience__intro {
         position: sticky;
-        top: 6rem;
+        top: 7rem;
     }
 }
 
@@ -687,17 +525,6 @@
     .experience__stat {
         padding: 0.85rem 0.75rem;
     }
-
-    .experience__cta {
-        padding: 1.5rem 1.25rem;
-    }
-
-    .experience__cta-actions,
-    .experience__cta-actions .button,
-    .experience__ghost {
-        width: 100%;
-        justify-content: center;
-    }
 }
 
 @media screen and (max-width: 350px) {
@@ -712,21 +539,10 @@
 
 /*=============== ACCESSIBILITY ===============*/
 @media (prefers-reduced-motion: reduce) {
-    .experience__reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-
     .experience__item {
         opacity: 1;
         transform: none;
         transition: none;
-    }
-
-    .experience__item--muted,
-    .experience__item--active.experience__item--muted {
-        opacity: 0.35;
     }
 
     .experience__live {
@@ -744,8 +560,6 @@
     .experience__details-wrap,
     .experience__details-wrap--open,
     .experience__toggle-icon,
-    .experience__skill,
-    .experience__filter-btn,
     .experience__stat {
         transition: none;
     }
@@ -757,9 +571,7 @@
     .experience__track,
     .experience__dot,
     .experience__toggle,
-    .experience__filter,
-    .experience__controls,
-    .experience__cta {
+    .experience__controls {
         display: none;
     }
 
@@ -767,7 +579,10 @@
         grid-template-columns: 1fr;
     }
 
-    .experience__reveal,
+    .experience__intro {
+        position: static;
+    }
+
     .experience__item {
         opacity: 1;
         transform: none;
