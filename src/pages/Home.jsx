@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Social from './Social';
 
-/* ============ CONFIG (edit these) ============ */
 const ROLES = [
   'Full-Stack Web Developer',
   'Laravel & Vue.js Engineer',
@@ -9,20 +8,9 @@ const ROLES = [
   'Workflow Automation',
 ];
 
-const AVAILABILITY = 'Available for new opportunities';
-
 const DESCRIPTION =
   'Full-stack web developer based in the Philippines. I build reliable web applications end to end, ' +
   'from the database and REST APIs to clean, accessible interfaces, with Laravel, Vue.js and MySQL at the core.';
-
-const STACK = ['PHP / Laravel', 'Vue.js', 'React', 'MySQL', 'REST APIs'];
-
-const FLOATING_CHIPS = [
-  { label: 'Laravel', className: 'home__chip--1' },
-  { label: 'Vue.js', className: 'home__chip--2' },
-  { label: 'MySQL', className: 'home__chip--3' },
-  { label: 'REST API', className: 'home__chip--4' },
-];
 
 const TYPE_SPEED = 75;
 const DELETE_SPEED = 40;
@@ -35,7 +23,6 @@ const prefersReducedMotion = () =>
   window.matchMedia &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Types each word, holds, deletes it, then moves to the next
 const useTypewriter = (words) => {
   const [reduce] = useState(prefersReducedMotion);
   const [state, setState] = useState({ index: 0, text: '', deleting: false });
@@ -77,7 +64,6 @@ const Home = () => {
 
   useEffect(() => () => cancelAnimationFrame(rafRef.current), []);
 
-  // Section-wide pointer tracking: drives the cursor glow, lit grid and background parallax
   const handleSectionMove = (e) => {
     if (e.pointerType !== 'mouse' || prefersReducedMotion()) return;
 
@@ -104,7 +90,6 @@ const Home = () => {
     el.style.setProperty('--py', '0');
   };
 
-  // Portrait tilt + glare. Vars go on the stage so the floating chips can react too
   const handleImgMove = (e) => {
     if (e.pointerType !== 'mouse' || prefersReducedMotion()) return;
 
@@ -170,7 +155,6 @@ const Home = () => {
         <span className="home__particle home__particle--4"></span>
         <span className="home__particle home__particle--5"></span>
 
-        {/* Brighter copy of the grid, revealed only around the cursor */}
         <div className="home__spot">
           <div className="home__bg-grid home__bg-grid--lit"></div>
         </div>
@@ -180,11 +164,6 @@ const Home = () => {
       <div className="home__container container">
         <div className="home__content">
           <div className="home__data">
-            <div className="home__badge" role="status">
-              <span className="home__badge-dot" aria-hidden="true"></span>
-              {AVAILABILITY}
-            </div>
-
             <span className="home__greeting">Hi, I&apos;m</span>
             <h1 id="home-heading" className="home__title">
               Crissan Dondriano
@@ -200,17 +179,10 @@ const Home = () => {
 
             <p className="home__description">{DESCRIPTION}</p>
 
-            <ul className="home__stack" aria-label="Core technologies">
-              {STACK.map((tech) => (
-                <li key={tech} className="home__stack-item">
-                  {tech}
-                </li>
-              ))}
-            </ul>
-
             <div className="home__buttons">
               
-              <a   className="button button--flex home__cta"
+              <a  href="#contact"
+                className="button button--flex home__cta"
                 aria-label="Contact Crissan Dondriano"
                 onPointerMove={handleMagnetMove}
                 onPointerLeave={handleMagnetLeave}
@@ -231,17 +203,6 @@ const Home = () => {
             <span className="home__orb home__orb--1"></span>
             <span className="home__orb home__orb--2"></span>
             <span className="home__orb home__orb--3"></span>
-
-            {FLOATING_CHIPS.map((chip) => (
-              <span
-                key={chip.label}
-                className={`home__chip ${chip.className}`}
-                aria-hidden="true"
-              >
-                <span className="home__chip-dot"></span>
-                {chip.label}
-              </span>
-            ))}
 
             <div
               className="home__img-border"
