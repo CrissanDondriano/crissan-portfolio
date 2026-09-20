@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from "react";
+import Logo from "../assets/images/logo.png";
+
+const CONFIG = {
+    name: "Crissan Dondriano",
+    logoSrc: Logo,
+};
 
 const Footer = () => {
-    const year = new Date().getFullYear()
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+    const year = new Date().getFullYear();
+     const [logoFailed, setLogoFailed] = useState(false);
 
     return (
         <footer className="footer">
@@ -13,18 +16,26 @@ const Footer = () => {
 
                 <div className="footer__grid">
                     <div className="footer__brand">
-                        <a href="#home" className="footer__logo">
-                            <span className="footer__logo-bracket" aria-hidden="true">&lt;</span>
-                            Crissan Dondriano
-                            <span className="footer__logo-bracket" aria-hidden="true"> /&gt;</span>
+                        <a href="#home" className="footer__logo" aria-label={`${CONFIG.name} - Home`}>
+                            {logoFailed ? (
+                                <>
+                                    <span className="footer__logo-bracket" aria-hidden="true">&lt;</span>
+                                    <span className="footer__logo-text">{CONFIG.name}</span>
+                                    <span className="footer__logo-bracket" aria-hidden="true"> /&gt;</span>
+                                </>
+                            ) : (
+                                <img
+                                    src={CONFIG.logoSrc}
+                                    alt=""
+                                    className="footer__logo-img"
+                                    decoding="async"
+                                    onError={() => setLogoFailed(true)}
+                                />
+                            )}
                         </a>
                         <p className="footer__tagline">
                             Full stack web developer building clean, reliable web applications.
                         </p>
-                        <span className="footer__status">
-                            <span className="footer__status-dot"></span>
-                            Available for work
-                        </span>
                     </div>
 
                     <div className="footer__column">
@@ -129,15 +140,6 @@ const Footer = () => {
                     <span className="footer__copy">
                         © {year} Crissan Dondriano. All rights reserved.
                     </span>
-
-                    <button
-                        className="footer__top"
-                        onClick={scrollToTop}
-                        aria-label="Back to top"
-                        type="button"
-                    >
-                        <i className="uil uil-arrow-up"></i>
-                    </button>
                 </div>
             </div>
         </footer>

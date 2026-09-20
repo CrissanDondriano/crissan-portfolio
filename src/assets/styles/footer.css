@@ -20,16 +20,25 @@
     display: inline-flex;
     align-items: baseline;
     color: var(--title-color);
-    font-weight: var(--font-medium);
-    font-size: var(--h3-font-size);
-    font-family: var(--body-font-2);
     text-decoration: none;
     margin-bottom: 0.75rem;
+}
+
+.footer__logo-img {
+    height: 4rem;
+    width: auto;
+    display: block;
 }
 
 .footer__logo-bracket {
     color: var(--light-blue);
     font-weight: var(--font-semi-bold);
+}
+
+.footer__logo-text {
+    font-weight: var(--font-medium);
+    font-size: var(--h3-font-size);
+    font-family: var(--body-font-2);
 }
 
 .footer__tagline {
