@@ -1,15 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
-/* ============ CONFIG (edit these) ============ */
 const CONFIG = {
     email: "dondrianocrissan20@gmail.com",
     location: "Philippines",
     timezone: "Asia/Manila",
-    // Put your PDF in the /public folder with this exact name
     resumeUrl: "/Crissan-Dondriano-Resume.pdf",
     resumeFileName: "Crissan-Dondriano-Resume.pdf",
-    availability: "Available for new opportunities",
+    availability: "Available for work",
     emailjs: {
         serviceId: "service_26c31po",
         templateId: "template_kpfykz4",
@@ -31,8 +29,6 @@ const SOCIALS = [
         icon: "uil-github",
     },
 ];
-
-const STACK = ["PHP / Laravel", "Vue.js", "React", "MySQL", "REST APIs", "Automation"];
 
 const PROJECT_TYPES = [
     "Web Application",
@@ -60,7 +56,6 @@ const validateAll = (values) => ({
 
 const INITIAL_VALUES = { name: "", email: "", project: "" };
 
-/* ============ HOOKS ============ */
 const useLocalTime = (timeZone) => {
     const [time, setTime] = useState("");
 
@@ -81,7 +76,6 @@ const useLocalTime = (timeZone) => {
     return time;
 };
 
-/* ============ FIELD COMPONENT ============ */
 const Field = ({
     as = "input",
     id,
@@ -142,7 +136,6 @@ const Field = ({
     );
 };
 
-/* ============ MAIN COMPONENT ============ */
 const Contact = () => {
     const form = useRef(null);
     const successRef = useRef(null);
@@ -159,12 +152,10 @@ const Contact = () => {
     const localTime = useLocalTime(CONFIG.timezone);
     const errors = useMemo(() => validateAll(values), [values]);
 
-    // Move focus to the success message for screen readers / keyboard users
     useEffect(() => {
         if (sent) successRef.current?.focus();
     }, [sent]);
 
-    // Clean up the copy timer on unmount
     useEffect(() => () => clearTimeout(copyTimer.current), []);
 
     const handleChange = (e) => {
@@ -224,7 +215,6 @@ const Contact = () => {
             return;
         }
 
-        // Honeypot: real users never fill this in
         if (form.current?.elements["website"]?.value) {
             setSent(true);
             resetForm();
@@ -262,7 +252,6 @@ const Contact = () => {
     return (
         <section className="contact section" id="contact" aria-labelledby="contact-heading">
             <div className="contact__container container">
-                {/* ============ LEFT: INFO ============ */}
                 <div className="contact__info">
                     <p className="contact__eyebrow contact__reveal" style={{ "--delay": "0ms" }}>
                         <span className="contact__eyebrow-line" aria-hidden="true"></span>
@@ -292,27 +281,15 @@ const Contact = () => {
                         {CONFIG.availability}
                     </div>
 
-                    <ul
-                        className="contact__stack contact__reveal"
-                        style={{ "--delay": "280ms" }}
-                        aria-label="Technologies I work with"
-                    >
-                        {STACK.map((tech) => (
-                            <li key={tech} className="contact__stack-item">
-                                {tech}
-                            </li>
-                        ))}
-                    </ul>
-
-                    <div className="contact__cards contact__reveal" style={{ "--delay": "340ms" }}>
+                    <div className="contact__cards contact__reveal" style={{ "--delay": "280ms" }}>
                         <div className="contact__card">
                             <span className="contact__card-icon" aria-hidden="true">
                                 <i className="uil uil-envelope"></i>
                             </span>
                             <div className="contact__card-body">
                                 <span className="contact__card-label">Email</span>
-                                
-                                <a    href={`mailto:${CONFIG.email}`}
+
+                                <a href={`mailto:${CONFIG.email}`}
                                     className="contact__card-value"
                                     aria-label={`Send an email to ${CONFIG.email}`}
                                 >
@@ -355,9 +332,9 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    <div className="contact__links contact__reveal" style={{ "--delay": "400ms" }}>
-                        
-                        <a    href={CONFIG.resumeUrl}
+                    <div className="contact__links contact__reveal" style={{ "--delay": "340ms" }}>
+
+                        <a href={CONFIG.resumeUrl}
                             className="contact__resume"
                             download={CONFIG.resumeFileName}
                         >
@@ -366,8 +343,8 @@ const Contact = () => {
                         </a>
 
                         {SOCIALS.map((social) => (
-                            
-                            <a    key={social.label}
+
+                            <a key={social.label}
                                 href={social.href}
                                 className="contact__social"
                                 target="_blank"
@@ -385,7 +362,6 @@ const Contact = () => {
                     </div>
                 </div>
 
-                {/* ============ RIGHT: FORM ============ */}
                 <div
                     className="contact__form-card contact__reveal"
                     style={{ "--delay": "200ms" }}
@@ -485,7 +461,7 @@ const Contact = () => {
                                 id="contact-project"
                                 name="project"
                                 label="Project details *"
-                                rows={6}
+                                rows={5}
                                 maxLength={MAX_MESSAGE}
                                 value={values.project}
                                 error={errors.project}
@@ -504,7 +480,6 @@ const Contact = () => {
                                 </span>
                             </div>
 
-                            {/* Honeypot (hidden from real users) */}
                             <div className="contact__honeypot" aria-hidden="true">
                                 <label htmlFor="contact-website">Website</label>
                                 <input

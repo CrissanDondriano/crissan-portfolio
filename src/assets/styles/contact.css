@@ -1,14 +1,9 @@
-/* ==========================================================
-   CONTACT SECTION
-   Uses the palette variables defined in index.css
-   ========================================================== */
-
 .contact {
     position: relative;
     overflow: hidden;
+    overflow: clip;
 }
 
-/* Soft ambient glow behind the section */
 .contact::before {
     content: "";
     position: absolute;
@@ -29,7 +24,6 @@
     padding-bottom: 3rem;
 }
 
-/* ============ ENTRANCE ANIMATION ============ */
 .contact__reveal {
     opacity: 0;
     transform: translateY(16px);
@@ -44,7 +38,6 @@
     }
 }
 
-/* ============ LEFT COLUMN ============ */
 .contact__info {
     display: flex;
     flex-direction: column;
@@ -86,7 +79,6 @@
     max-width: 34rem;
 }
 
-/* Availability badge */
 .contact__badge {
     align-self: flex-start;
     display: inline-flex;
@@ -127,30 +119,6 @@
         transform: scale(3);
         opacity: 0;
     }
-}
-
-/* Tech stack chips */
-.contact__stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.contact__stack-item {
-    padding: 0.35rem 0.85rem;
-    border-radius: 0.5rem;
-    background: var(--black-light);
-    border: 1px solid var(--black-soft);
-    font-family: var(--body-font-2);
-    font-size: var(--smaller-font-size);
-    color: var(--text-color);
-    transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-}
-
-.contact__stack-item:hover {
-    color: var(--title-color);
-    border-color: var(--light-blue);
-    transform: translateY(-2px);
 }
 
 /* Info cards */
@@ -843,7 +811,6 @@ textarea.contact__input {
     }
 
     .contact__card,
-    .contact__stack-item,
     .contact__resume,
     .contact__social,
     .contact__submit,
