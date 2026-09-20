@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Social from './Social';
-import { Link } from 'react-router-dom';
 
 /* ============ CONFIG (edit these) ============ */
 const CONFIG = {
@@ -13,27 +12,39 @@ const CONFIG = {
 
 const DESCRIPTION =
     "I'm a full-stack web developer who builds complete web applications, from the database to the interface. " +
-    'My core stack is PHP/Laravel, Vue.js and MySQL, with REST APIs keeping the front end and back end clean and predictable. ' +
+    'My core stack is PHP/Laravel, Vue.js and MySQL, with REST APIs and GraphQL keeping the front end and back end clean and predictable. ' +
+    "I work in HTML, CSS, JavaScript, TypeScript and PHP, and I've also used Python, Java, C and C++. " +
     'I care about readable code, responsive and accessible interfaces, and shipping work that solves a real problem. ' +
     'I also use workflow automation tools like Airtable, Softr and Make to remove manual work.';
 
-// Pulled from your project stacks: verify/edit this list
+// Taken from your Capabilities section. The note is just a short descriptor of the language
+const LANGUAGES = [
+    { name: 'HTML5', note: 'Markup' },
+    { name: 'CSS3', note: 'Styling' },
+    { name: 'JavaScript', note: 'Scripting' },
+    { name: 'TypeScript', note: 'Typed JavaScript' },
+    { name: 'PHP', note: 'Server-side' },
+    { name: 'Python', note: 'General purpose' },
+    { name: 'Java', note: 'Object-oriented' },
+    { name: 'C', note: 'Systems' },
+    { name: 'C++', note: 'Systems & OOP' },
+];
+
+// Frameworks, libraries, tools and platforms (languages live in LANGUAGES above)
 const SKILLS = [
-    { name: 'JavaScript', group: 'Frontend' },
-    { name: 'TypeScript', group: 'Frontend' },
     { name: 'React', group: 'Frontend' },
     { name: 'Vue 3', group: 'Frontend' },
-    { name: 'HTML5', group: 'Frontend' },
-    { name: 'CSS3', group: 'Frontend' },
+    { name: 'Bootstrap', group: 'Frontend' },
     { name: 'jQuery', group: 'Frontend' },
     { name: 'Three.js', group: 'Frontend' },
     { name: 'GSAP', group: 'Frontend' },
     { name: 'Canvas API', group: 'Frontend' },
-    { name: 'PHP', group: 'Backend' },
     { name: 'Laravel', group: 'Backend' },
     { name: 'MySQL', group: 'Backend' },
     { name: 'REST APIs', group: 'Backend' },
+    { name: 'GraphQL', group: 'Backend' },
     { name: 'Git', group: 'Tools' },
+    { name: 'Postman', group: 'Tools' },
     { name: 'Vite', group: 'Tools' },
     { name: 'Airtable', group: 'Automation' },
     { name: 'Make.com', group: 'Automation' },
@@ -52,7 +63,7 @@ const PILLARS = [
         text: 'I build responsive, accessible UIs with a strong eye for UX, from component structure to the small interactions that make a product feel polished.',
         points: [
             'Component-driven UIs with Vue 3 and React',
-            'Responsive layouts, semantic HTML and clean CSS',
+            'Responsive layouts with Bootstrap, semantic HTML and clean CSS',
             'Motion and interaction with GSAP, Canvas and Three.js',
         ],
     },
@@ -66,7 +77,8 @@ const PILLARS = [
         points: [
             'Laravel applications with clear structure and validation',
             'MySQL schema design and query work',
-            'REST APIs consumed by Vue and React front ends',
+            'REST and GraphQL APIs consumed by Vue and React front ends',
+            'API testing and debugging with Postman',
         ],
     },
     {
@@ -86,8 +98,8 @@ const PILLARS = [
 
 const STATS = [
     { value: CONFIG.experienceYears, decimals: 1, suffix: '+', label: 'Years of professional experience' },
-    { value: SKILLS.length, decimals: 0, suffix: '', label: 'Technologies in my toolkit' },
-    { value: PILLARS.length, decimals: 0, suffix: '', label: 'Disciplines: front, back, automation' },
+    { value: LANGUAGES.length, decimals: 0, suffix: '', label: 'Languages in my toolkit' },
+    { value: SKILLS.length, decimals: 0, suffix: '', label: 'Frameworks and tools in my toolkit' },
 ];
 
 /* ============ HOOKS ============ */
@@ -137,7 +149,6 @@ const AboutBackground = () => {
 
         const reduce = prefersReducedMotion();
 
-        // Read the accent color from your CSS variables so it stays on-palette
         const raw = getComputedStyle(document.documentElement)
             .getPropertyValue('--light-blue')
             .trim();
@@ -178,7 +189,6 @@ const AboutBackground = () => {
                 }
             }
 
-            // Links between nearby particles
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const a = particles[i];
@@ -195,7 +205,6 @@ const AboutBackground = () => {
                 }
             }
 
-            // Links from the cursor + dots
             for (const p of particles) {
                 const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
                 if (d < MOUSE_DIST) {
@@ -275,7 +284,6 @@ const AboutBackground = () => {
         const resizeObserver = new ResizeObserver(init);
         resizeObserver.observe(canvas);
 
-        // Only animate while the section is on screen
         const visibilityObserver = new IntersectionObserver(
             ([entry]) => (entry.isIntersecting ? start() : stop()),
             { threshold: 0 }
@@ -317,7 +325,7 @@ const Stat = ({ value, decimals, suffix, label, active }) => {
 };
 
 /* ============ MAIN COMPONENT ============ */
-const About = ({ isFullPage = false }) => {
+const About = () => {
     const sectionRef = useRef(null);
     const tabRefs = useRef([]);
     const [isVisible, setIsVisible] = useState(false);
@@ -342,6 +350,7 @@ const About = ({ isFullPage = false }) => {
         return () => observer.disconnect();
     }, []);
 
+    // Cursor spotlight, shared by the "What I do" panel and the language cards
     const handlePointerMove = (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         e.currentTarget.style.setProperty('--mx', `${e.clientX - rect.left}px`);
@@ -374,10 +383,38 @@ const About = ({ isFullPage = false }) => {
 
     const pillar = PILLARS[activeTab];
 
+    const languagesSection = (
+        <div className="about__languages">
+            <p
+                className="about__stack-label about__lang-label about__reveal"
+                style={{ '--delay': '450ms' }}
+            >
+                Languages
+            </p>
+
+            <ul className="about__lang-grid" aria-label="Languages I work with">
+                {LANGUAGES.map((lang, i) => (
+                    <li
+                        key={lang.name}
+                        className="about__lang"
+                        style={{ '--i': i }}
+                        onPointerMove={handlePointerMove}
+                    >
+                        <span className="about__lang-index" aria-hidden="true">
+                            {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <span className="about__lang-name">{lang.name}</span>
+                        <span className="about__lang-note">{lang.note}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+
     const stackSection = (
-        <div className="about__stack about__reveal" style={{ '--delay': '450ms' }}>
+        <div className="about__stack about__reveal" style={{ '--delay': '560ms' }}>
             <div className="about__stack-head">
-                <p className="about__stack-label">Language &amp; Tech Stack</p>
+                <p className="about__stack-label">Frameworks &amp; Tools</p>
 
                 <div className="about__filters" role="group" aria-label="Filter technologies by category">
                     {FILTERS.map((f) => (
@@ -394,7 +431,7 @@ const About = ({ isFullPage = false }) => {
                 </div>
             </div>
 
-            <ul className="about__chips" aria-label="Technologies">
+            <ul className="about__chips" aria-label="Frameworks and tools">
                 {SKILLS.map((skill) => {
                     const dim = filter !== 'All' && skill.group !== filter;
                     return (
@@ -410,7 +447,7 @@ const About = ({ isFullPage = false }) => {
 
             <p className="about__sr-only" aria-live="polite">
                 {filter === 'All'
-                    ? `Showing all ${SKILLS.length} technologies`
+                    ? `Showing all ${SKILLS.length} frameworks and tools`
                     : `${matchCount} technologies in ${filter}`}
             </p>
         </div>
@@ -420,20 +457,19 @@ const About = ({ isFullPage = false }) => {
         <section
             className={`about section ${isVisible ? 'about--visible' : ''}`}
             id="about"
-            aria-labelledby={isFullPage ? 'about-full-heading' : 'about-heading'}
+            aria-labelledby="about-heading"
             ref={sectionRef}
         >
             <AboutBackground />
 
             <div className="about__container container">
-                {/* ============ HEADER ============ */}
                 <header className="about__header">
                     <p className="about__eyebrow about__reveal" style={{ '--delay': '0ms' }}>
                         <span className="about__eyebrow-line" aria-hidden="true"></span>
                         About
                     </p>
                     <h2
-                        id={isFullPage ? 'about-full-heading' : 'about-heading'}
+                        id="about-heading"
                         className="about__heading about__reveal"
                         style={{ '--delay': '80ms' }}
                     >
@@ -441,8 +477,7 @@ const About = ({ isFullPage = false }) => {
                     </h2>
                 </header>
 
-                <div className={`about__layout ${isFullPage ? 'about__layout--split' : ''}`}>
-                    {/* ============ LEFT: STORY ============ */}
+                <div className="about__layout about__layout--split">
                     <div className="about__main">
                         <h3 className="about__title about__reveal" style={{ '--delay': '160ms' }}>
                             {CONFIG.role}
@@ -458,100 +493,85 @@ const About = ({ isFullPage = false }) => {
                             ))}
                         </div>
 
-                        {isFullPage ? (
-                            <div className="about__buttons about__reveal" style={{ '--delay': '400ms' }}>
-                                
-                                <a    href={CONFIG.resumeUrl}
-                                    className="button button--flex about__resume"
-                                    download={CONFIG.resumeFileName}
-                                    aria-label="Download my resume as PDF"
-                                >
-                                    <i className="uil uil-file-download-alt" aria-hidden="true"></i>
-                                    Download Resume
-                                </a>
-                                <Social />
-                            </div>
-                        ) : (
-                            <div className="about__reveal" style={{ '--delay': '400ms' }}>
-                                <Link
-                                    className="about__links"
-                                    to="/about"
-                                    aria-label="Read more about my background and experience"
-                                >
-                                    More About Me
-                                    <i className="uil uil-arrow-right" aria-hidden="true"></i>
-                                </Link>
-                            </div>
-                        )}
+                        <div className="about__buttons about__reveal" style={{ '--delay': '400ms' }}>
+                            
+                            <a    href={CONFIG.resumeUrl}
+                                className="button button--flex about__resume"
+                                download={CONFIG.resumeFileName}
+                                aria-label="Download my resume as PDF"
+                            >
+                                <i className="uil uil-file-download-alt" aria-hidden="true"></i>
+                                Download Resume
+                            </a>
+                            <Social />
+                        </div>
                     </div>
 
-                    {/* ============ RIGHT: WHAT I DO (full page only) ============ */}
-                    {isFullPage && (
+                    <div
+                        className="about__panel about__reveal"
+                        style={{ '--delay': '280ms' }}
+                        onPointerMove={handlePointerMove}
+                    >
+                        <p className="about__panel-label">What I do</p>
+
                         <div
-                            className="about__panel about__reveal"
-                            style={{ '--delay': '280ms' }}
-                            onPointerMove={handlePointerMove}
+                            className="about__tablist"
+                            role="tablist"
+                            aria-label="Areas of expertise"
+                            onKeyDown={handleTabKeyDown}
                         >
-                            <p className="about__panel-label">What I do</p>
-
-                            <div
-                                className="about__tablist"
-                                role="tablist"
-                                aria-label="Areas of expertise"
-                                onKeyDown={handleTabKeyDown}
-                            >
-                                {PILLARS.map((item, index) => (
-                                    <button
-                                        key={item.id}
-                                        ref={(el) => (tabRefs.current[index] = el)}
-                                        type="button"
-                                        role="tab"
-                                        id={`about-tab-${item.id}`}
-                                        className="about__tab"
-                                        aria-selected={activeTab === index}
-                                        aria-controls={`about-panel-${item.id}`}
-                                        tabIndex={activeTab === index ? 0 : -1}
-                                        onClick={() => setActiveTab(index)}
-                                    >
-                                        <i className={`uil ${item.icon}`} aria-hidden="true"></i>
-                                        <span>{item.label}</span>
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div
-                                key={pillar.id}
-                                className="about__tabpanel"
-                                role="tabpanel"
-                                id={`about-panel-${pillar.id}`}
-                                aria-labelledby={`about-tab-${pillar.id}`}
-                                tabIndex={0}
-                            >
-                                <h4 className="about__tabpanel-title">{pillar.title}</h4>
-                                <p className="about__tabpanel-text">{pillar.text}</p>
-
-                                <ul className="about__points">
-                                    {pillar.points.map((point) => (
-                                        <li key={point}>
-                                            <i className="uil uil-check-circle" aria-hidden="true"></i>
-                                            <span>{point}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
+                            {PILLARS.map((item, index) => (
                                 <button
+                                    key={item.id}
+                                    ref={(el) => (tabRefs.current[index] = el)}
                                     type="button"
-                                    className="about__highlight"
-                                    onClick={() => setFilter(pillar.group)}
+                                    role="tab"
+                                    id={`about-tab-${item.id}`}
+                                    className="about__tab"
+                                    aria-selected={activeTab === index}
+                                    aria-controls={`about-panel-${item.id}`}
+                                    tabIndex={activeTab === index ? 0 : -1}
+                                    onClick={() => setActiveTab(index)}
                                 >
-                                    Highlight {pillar.label.toLowerCase()} tools
-                                    <i className="uil uil-arrow-down" aria-hidden="true"></i>
+                                    <i className={`uil ${item.icon}`} aria-hidden="true"></i>
+                                    <span>{item.label}</span>
                                 </button>
-                            </div>
+                            ))}
                         </div>
-                    )}
+
+                        <div
+                            key={pillar.id}
+                            className="about__tabpanel"
+                            role="tabpanel"
+                            id={`about-panel-${pillar.id}`}
+                            aria-labelledby={`about-tab-${pillar.id}`}
+                            tabIndex={0}
+                        >
+                            <h4 className="about__tabpanel-title">{pillar.title}</h4>
+                            <p className="about__tabpanel-text">{pillar.text}</p>
+
+                            <ul className="about__points">
+                                {pillar.points.map((point) => (
+                                    <li key={point}>
+                                        <i className="uil uil-check-circle" aria-hidden="true"></i>
+                                        <span>{point}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <button
+                                type="button"
+                                className="about__highlight"
+                                onClick={() => setFilter(pillar.group)}
+                            >
+                                Highlight {pillar.label.toLowerCase()} tools
+                                <i className="uil uil-arrow-down" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
+                {languagesSection}
                 {stackSection}
             </div>
         </section>

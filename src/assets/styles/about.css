@@ -362,6 +362,102 @@
     transform: translateY(3px);
 }
 
+/* ============ LANGUAGES ============ */
+.about__lang-label {
+    margin-bottom: 1.25rem;
+}
+
+.about__lang-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.about__lang {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.1rem 1.25rem;
+    overflow: hidden;
+    background: var(--container-color);
+    border: 1px solid var(--black-soft);
+    border-radius: 1rem;
+    opacity: 0;
+    transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Staggered entrance. It's an animation (not a transition) so the delay never slows the hover effects */
+.about--visible .about__lang {
+    opacity: 1;
+    animation: aboutLangIn 0.5s ease backwards;
+    animation-delay: calc(var(--i, 0) * 60ms + 500ms);
+}
+
+@keyframes aboutLangIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+}
+
+/* Cursor spotlight (same recipe as the panel and the Contact card) */
+.about__lang::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(
+        220px circle at var(--mx, 50%) var(--my, 0%),
+        rgba(240, 240, 240, 0.1),
+        transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.about__lang:hover {
+    border-color: var(--light-blue);
+    background: var(--black-lighter);
+    transform: translateY(-3px);
+}
+
+.about__lang:hover::before {
+    opacity: 1;
+}
+
+.about__lang-index {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    font-family: var(--body-font-2);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    font-variant-numeric: tabular-nums;
+    color: var(--gray);
+    transition: color 0.3s ease;
+}
+
+.about__lang:hover .about__lang-index {
+    color: var(--light-blue);
+}
+
+.about__lang-name {
+    font-family: var(--body-font);
+    font-size: 1.75rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--title-color);
+}
+
+.about__lang-note {
+    font-family: var(--body-font-2);
+    font-size: var(--smaller-font-size);
+    color: var(--text-color);
+}
+
 /* ============ TECH STACK ============ */
 .about__stack-head {
     display: flex;
@@ -454,6 +550,12 @@
 }
 
 /* ============ RESPONSIVE ============ */
+@media screen and (min-width: 576px) {
+    .about__lang-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 @media screen and (min-width: 992px) {
     .about__container {
         gap: 3rem;
@@ -466,6 +568,14 @@
 
     .about__panel {
         padding: 2rem;
+    }
+
+    .about__lang {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .about__lang-name {
+        font-size: 2rem;
     }
 }
 
@@ -520,6 +630,15 @@
         padding: 0.85rem 0.75rem;
     }
 
+    .about__lang {
+        padding: 1rem;
+    }
+
+    .about__lang-index {
+        top: 0.85rem;
+        right: 0.9rem;
+    }
+
     .about__stack-head {
         flex-direction: column;
         align-items: flex-start;
@@ -533,6 +652,10 @@
 
     .about__heading {
         font-size: 2.25rem;
+    }
+
+    .about__lang-name {
+        font-size: 1.5rem;
     }
 }
 
@@ -548,8 +671,16 @@
         animation: none;
     }
 
-    .about__panel::before {
+    .about__panel::before,
+    .about__lang::before {
         display: none;
+    }
+
+    .about__lang,
+    .about--visible .about__lang {
+        opacity: 1;
+        animation: none;
+        transition: none;
     }
 
     .about__stat,
@@ -572,9 +703,11 @@
         display: none;
     }
 
-    .about__reveal {
+    .about__reveal,
+    .about__lang {
         opacity: 1;
         transform: none;
+        animation: none;
     }
 
     .about__links {

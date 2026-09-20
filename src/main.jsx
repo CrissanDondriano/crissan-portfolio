@@ -12,7 +12,6 @@ import './assets/styles/about.css';
 import './assets/styles/portfolio.css';
 import './assets/styles/contact.css';
 import './assets/styles/experience.css';
-import './assets/styles/capabilities.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
