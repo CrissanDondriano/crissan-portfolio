@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Resume from './../assets/pdf/Crissan Resume.pdf';
+import Resume from './../assets/pdf/Updated-Crissan-Resume.pdf';
 import Social from './Social';
 
 const CONFIG = {
     role: 'Full-Stack Web Developer | Philippines',
     resumeUrl: Resume,
-    resumeFileName: 'Crissan-Dondriano-Resume.pdf',
+    resumeFileName: 'Updated-Crissan-Resume.pdf',
     experienceYears: 1.5,
 };
 

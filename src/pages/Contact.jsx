@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Resume from './../assets/pdf/Crissan Resume.pdf';
+import Resume from './../assets/pdf/Updated-Crissan-Resume.pdf';
 import emailjs from "@emailjs/browser";
 
 const CONFIG = {
@@ -7,7 +7,7 @@ const CONFIG = {
     location: "Philippines",
     timezone: "Asia/Manila",
     resumeUrl: Resume,
-    resumeFileName: "Crissan-Dondriano-Resume.pdf",
+    resumeFileName: "Updated-Crissan-Resume.pdf",
     availability: "Available for work",
     emailjs: {
         serviceId: "service_26c31po",
