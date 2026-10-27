@@ -3,6 +3,7 @@ import Work2 from '../../assets/images/work2.png' // Linang
 import Work3 from '../../assets/images/work3.png' // BGPMS 
 import Work4 from '../../assets/images/work4.png' // TaskFlow 
 import Work5 from '../../assets/images/work5.png' // Idle Realm
+import Work6 from '../../assets/images/work6.png' // Talaio
 
 export const projectsNav = [
   { name: 'All' },
@@ -65,5 +66,16 @@ export const projectsData = [
         category: 'game',
         demo: 'https://idle-realm.onrender.com/',
         link: '' // add your repo link here
+    },
+    {
+        id: 6,
+        image: Work6,
+        title: 'Talaio',
+        description: 'Talaio is a job application tracker built with React, TypeScript, and Supabase, featuring secure user-specific data and PWA support.',
+        year: '2026',
+        role: 'Full Stack Developer',
+        category: 'web', 
+        demo: 'https://talaio.vercel.app/', 
+        link: ''
     },
 ];
